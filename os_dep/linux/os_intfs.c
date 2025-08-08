@@ -508,13 +508,13 @@ static void rtw_ethtool_get_drvinfo(struct net_device *dev, struct ethtool_drvin
 
 	strscpy(info->version, DRIVERVERSION, sizeof(info->version));
 #else
-		strlcpy(info->driver, wiphy_dev(wdev->wiphy)->driver->name,
+		strscpy(info->driver, wiphy_dev(wdev->wiphy)->driver->name,
 			sizeof(info->driver));
 	} else {
-		strlcpy(info->driver, "N/A", sizeof(info->driver));
+		strscpy(info->driver, "N/A", sizeof(info->driver));
 	}
 
-	strlcpy(info->version, DRIVERVERSION, sizeof(info->version));
+	strscpy(info->version, DRIVERVERSION, sizeof(info->version));
 #endif
 
 	padapter = (_adapter *)rtw_netdev_priv(dev);
@@ -540,10 +540,10 @@ static void rtw_ethtool_get_drvinfo(struct net_device *dev, struct ethtool_drvin
 		sizeof(info->bus_info));
 #else
 	{
-		strlcpy(info->fw_version, "N/A", sizeof(info->fw_version));
+		strscpy(info->fw_version, "N/A", sizeof(info->fw_version));
 	}
 
-	strlcpy(info->bus_info, dev_name(wiphy_dev(wdev->wiphy)),
+	strscpy(info->bus_info, dev_name(wiphy_dev(wdev->wiphy)),
 		sizeof(info->bus_info));
 #endif
 }
